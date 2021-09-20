@@ -61,6 +61,7 @@ INSERT IGNORE INTO tb_notas (id_alune,semestre, nota) VALUES
 (1,2,9.20);
 
 
+UPDATE tb_alune SET nome="André Pereira Soares" WHERE id_alune=2;
 
 select distinct nome as ALUNOS_NOTAS_SUPERIOR_7, notas.nota as NOTA_ALUNO, notas.semestre from tb_alunes alune
 left join tb_notas notas on notas.id_alune = alune.id_alune where (notas.nota>7);

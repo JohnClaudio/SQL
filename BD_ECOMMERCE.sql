@@ -56,6 +56,13 @@ INSERT IGNORE INTO tb_produtos (nome,descricao,valor_unitario,validade,categoria
 2025-09-20,
 1
 ),
+(
+'Celular Xiaomi Note 10',
+'6GB RAM 128GB ARMAZENAMENTO',
+1500.50,
+null,
+3
+),
 
 (
 'Lápis De Cor 50 Cores',
@@ -65,14 +72,36 @@ INSERT IGNORE INTO tb_produtos (nome,descricao,valor_unitario,validade,categoria
 1
 );
 
-INSERT IGNORE INTO tb_estoque(produto,quantidade_estoque) VALUES (1,25);
-INSERT IGNORE INTO tb_estoque(produto,quantidade_estoque) VALUES (2,25);
+INSERT IGNORE INTO tb_estoque(produto,quantidade_estoque) VALUES (1,25); /*ADICIONANDO ESTOQUE PRODUTO 1*/
+INSERT IGNORE INTO tb_estoque(produto,quantidade_estoque) VALUES (2,90); /*ADICIONANDO ESTOQUE PRODUTO 2*/
+INSERT IGNORE INTO tb_estoque(produto,quantidade_estoque) VALUES (3,20); /*ADICIONANDO ESTOQUE PRODUTO 3*/
 
-UPDATE tb_produtos  set nome="borracha FaberCastell" where  id_produto = 1;
+UPDATE tb_produtos  set nome="Borracha FaberCastell" where  id_produto = 1;
 
-select * from tb_produtos;
-select * from tb_estoque;
 
+
+/*QUERY CONSULTA VALORES MENORES DO QUE 500 REAIS*/
+SELECT prod.nome as NOME_PRODUTO,
+	   prod.valor_unitario AS VALOR_R$, 
+       estoque.quantidade_estoque as ESTOQUE_RESTANTE,
+       cat.nome as CATEGORIA from tb_produtos prod
+       
+inner join tb_estoque estoque on estoque.produto = prod.id_produto
+inner join tb_categoria cat on cat.id_categoria = prod.categoria
+where (prod.valor_unitario<500);
+
+
+/*QUERY CONSULTA VALORES SUPERIORES DO QUE 500 REAIS*/
+
+SELECT prod.nome as NOME_PRODUTO,
+	   prod.valor_unitario AS VALOR_R$, 
+       estoque.quantidade_estoque as ESTOQUE_RESTANTE,
+       cat.nome as CATEGORIA from tb_produtos prod
+       
+inner join tb_estoque estoque on estoque.produto = prod.id_produto
+inner join tb_categoria cat on cat.id_categoria = prod.categoria
+
+where (prod.valor_unitario>500);
 
 
 
