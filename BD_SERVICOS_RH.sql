@@ -1,19 +1,24 @@
 /*Atividade 1
+
 Crie um banco de dados para um serviço de RH de uma empresa, onde o sistema
 trabalhará com as informações dos funcionaries desta empresa.
+
 Crie uma tabela de funcionaries e utilizando a habilidade de abstração e determine 5
 atributos relevantes dos funcionaries para se trabalhar com o serviço deste RH.
 Popule esta tabela com até 5 dados;
+
 Faça um select que retorne os funcionaries com o salário maior do que 2000.
 Faça um select que retorne os funcionaries com o salário menor do que 2000.
 Ao término atualize um dado desta tabela através de uma query de atualização.
 salve as querys para cada uma dos requisitos o exercício em*/
 
-drop database DB_RH;
-CREATE DATABASE IF NOT EXISTS DB_RH;
+CREATE DATABASE IF NOT EXISTS DB_RH
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE       utf8mb4_unicode_ci;
+
 USE DB_RH;
 
-CREATE TABLE IF NOT EXISTS tb_funcionario(
+CREATE TABLE IF NOT EXISTS tb_funcionarios(
 CPF CHAR (11),
 nome varchar(100)  not null,
 nascimento date,
@@ -23,9 +28,9 @@ setor varchar(30)  not null,
 admissao date,
 create_at timestamp,
 PRIMARY KEY (CPF)
-);
+)ENGINE=InnoDB;
 
-INSERT IGNORE INTO tb_funcionario VALUES (
+INSERT IGNORE INTO tb_funcionarios VALUES (
 18022060862,
 'Eowyn Haikela Souza',
 '1996-09-20',
@@ -56,8 +61,8 @@ default
 default
 );
 
-SELECT nome,salario as SALARIO_SUPERIOR_2000 from tb_funcionario WHERE (salario > 2000) ;
-SELECT nome,salario as SALARIO_INFERIOR_2000 from tb_funcionario WHERE (salario < 2000) ;
+SELECT nome,salario as SALARIO_SUPERIOR_2000 from tb_funcionarios WHERE (salario > 2000) ;
+SELECT nome,salario as SALARIO_INFERIOR_2000 from tb_funcionarios WHERE (salario < 2000) ;
 
 
 

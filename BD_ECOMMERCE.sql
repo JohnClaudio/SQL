@@ -12,14 +12,19 @@ salve as querys para cada uma dos requisitos o exercício em um arquivo .SQL ou 
 coloque no seu GitHuB pessoal e compartilhe esta atividade.
 */
 drop database DB_ECOMMERCE;
-CREATE DATABASE IF NOT EXISTS DB_ECOMMERCE;
+
+CREATE DATABASE IF NOT EXISTS DB_ECOMMERCE
+DEFAULT CHARACTER SET utf8mb4
+DEFAULT COLLATE       utf8mb4_unicode_ci;
+
 USE DB_ECOMMERCE;
 
 CREATE TABLE IF NOT EXISTS tb_categoria(
 id_categoria int auto_increment not null,
 nome varchar(60)  not null,
 PRIMARY KEY (id_categoria)
-);
+)ENGINE=InnoDB;
+
 INSERT IGNORE INTO tb_categoria (nome) VALUES ('MATERIAL ESCOLAR'),('PRODUTOS DE HIGIENE'), ('ELETRÔNICOS');
 
 
@@ -33,7 +38,7 @@ categoria int not null,
 create_at timestamp,
 PRIMARY KEY (id_produto),
 FOREIGN KEY (categoria) REFERENCES tb_categoria(id_categoria)
-);
+)ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS tb_estoque(
 id_estoque int auto_increment not null,
@@ -41,7 +46,7 @@ produto int not null unique,
 quantidade_estoque SMALLINT,
 PRIMARY KEY (id_estoque),
 FOREIGN KEY (produto) references tb_produtos(id_produto)
-);
+)ENGINE=InnoDB;
 
 INSERT IGNORE INTO tb_produtos (nome,descricao,valor_unitario,validade,categoria) VALUES 
 (
@@ -63,6 +68,7 @@ INSERT IGNORE INTO tb_produtos (nome,descricao,valor_unitario,validade,categoria
 INSERT IGNORE INTO tb_estoque(produto,quantidade_estoque) VALUES (1,25);
 INSERT IGNORE INTO tb_estoque(produto,quantidade_estoque) VALUES (2,25);
 
+UPDATE tb_produtos  set nome="borracha FaberCastell" where  id_produto = 1;
 
 select * from tb_produtos;
 select * from tb_estoque;
