@@ -11,7 +11,7 @@ Ao término atualize um dado desta tabela através de uma query de atualização
 salve as querys para cada uma dos requisitos o exercício em um arquivo .SQL ou texto e
 coloque no seu GitHuB pessoal e compartilhe esta atividade.
 */
-drop database DB_ECOMMERCE;
+drop database if exists DB_ECOMMERCE;
 
 CREATE DATABASE IF NOT EXISTS DB_ECOMMERCE
 DEFAULT CHARACTER SET utf8mb4
